@@ -1,16 +1,28 @@
-# Add comments before you do anything else.
-
 #!/usr/bin/env python3
-# Author:
-# Date:
+# Author: Enoch Li (eli67)
+# Date: 2026-10-24
 # Purpose: Create Series.
 # Usage: ./lab7e.py
 
-# TO DO 1: Import pandas module.
+import pandas as pd
 
-# TO DO 2: Create a series according to instructions given in readme.md file.
+def main():
+	grades = ["F", "D", "C", "B", "A", "A+"]
+	values = ["<50", "50-59", "60-69", "70-79", "80-89", "90-100"]
+	pd_grades = pd.Series(data=values, index=grades)
+	
+	print(f"Series from List:\n{pd_grades}")
 
-# TO DO 3: Perform the operations on this series given in readme.md file.
+	print("\nPrints A+ and C onto the screen:")
+	print(f"A+ {pd_grades['A+']}\nC {pd_grades['C']}")
 
-# TO DO 4: Run the script.
+	print("\nPrints the value '60-69' directly:")
+	print(f"{pd_grades.index[2]}")
 
+	print("\nUsing the unpack operator (*):")
+	print(*pd_grades)
+	print("\nAnd on its index:")
+	print(*pd_grades.index)
+
+if __name__ == "__main__":
+	main()

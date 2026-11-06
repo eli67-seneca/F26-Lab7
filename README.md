@@ -22,7 +22,7 @@ import numpy as np  # Step 1: Import NumPy
 
 # Creating a 1D array using a Python list
 arr1 = np.array([1, 2, 3, 4, 5])
-print("1D Array:", arr1)
+print("1D Array:\n", arr1)
 
 # Creating a 2D array using a nested Python list
 arr2 = np.array([[1, 2, 3], [4, 5, 6]])
@@ -188,9 +188,9 @@ pd.Series(data_list, index=['a', 'b', 'c', 'd', 'e'])
 ```
 
 - Import pandas module in your lab7e.py file.
-- Create a series with values “<50”, “50-59”, “60-69”, “70-79”, “80-89”, “90-100” and corresponding index names as “F”, “D”, “C”, “B”, “A”, “A+”. Print this series on screen.
-- Write code to print the values of indices “C” and “A+”.
-- Write code to print value “60-69” directly without printing its index name.
+- Create a series with values "<50", "50-59", "60-69", "70-79", "80-89", "90-100" and corresponding index names as "F", "D", "C", "B", "A", "A+". Print this series on screen.
+- Write code to print the values of indices "C" and "A+".
+- Write code to print value "60-69" directly without printing its index name.
 - Write code to show the * operation on this list
 - Run your script using the command python ./lab7e.py.
 
@@ -216,9 +216,9 @@ print("DataFrame created from dictionary:\n", df)
 ```
 
 - In your lab8f.py file, using pandas create and print a data frame from the following dictionaries.
-  - {“Apple”: “Green”, “Carrot”: “Red”, “Radish”: “Purple”}
-  - {“Okra”: “Thin”, “Potato”: “blob”, “Radish”: “Round”}
-  - {“Apple”: 2.1, “Okra”: 3.5, “Carrot”: 1.3, “Potato”: 2.0, “Radish”: 3.0}
+  - {"Apple": "Green", "Carrot": "Red", "Radish": "Purple"}
+  - {"Okra": "Thin", "Potato": "blob", "Radish": "Round"}
+  - {"Apple": 2.1, "Okra": 3.5, "Carrot": 1.3, "Potato": 2.0, "Radish": 3.0}
 - Using Pandas create a data frame that looks like in the image dataframe.jpg file.
 - Run your script using the command python ./lab7f.py.
 
@@ -318,7 +318,7 @@ print("\nValue Counts for Name:\n", name_counts)
   - Print summary of the data contained in data frame
   - Print first 10 and last 10 rows of this data frame.
   - Using operation on data frame print the year of earliest and latest movie (hint: min function on year column).
-  - Print unique values in the “Genre” column.
+  - Print unique values in the "Genre" column.
   - Count how many moves are not made in USA.
   - Find top 10 Highest-Rated Movies.
   - Find out what the best decade of movies is. Also display using a scatter plot.
@@ -326,7 +326,7 @@ print("\nValue Counts for Name:\n", name_counts)
           1. First define a python function that gets the decade from the year
           2. Add a decade column to the dataframe.
           3. group by decade to get the mean rating for each decade
-          4. Creat a scatterlot using MATPLOT.
+          4. Create a scatterplot using MATPLOT.
    
 
 
