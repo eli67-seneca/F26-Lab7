@@ -5,50 +5,50 @@
 # Usage: ./lab7h.py
 import pandas as pd
 import matplotlib.pyplot as plot
+import sys
+from pandas import Index, Series
 
 movies = pd.read_csv("imdb_top_250.csv")
 
-def main():
-	# Copy Year column into a new series and sort it in asc order
+def get_years(years:int=10):
+	# Copy Year column into a new series and sort in asc order
 	sorted_years = movies['Year'].copy().sort_values()
 	print(f"Copy and sort year column:\n{sorted_years.head(10)}\n")
 
-	# Find unique years and the number of times each year occurs
+	# Find unique years and number of times each year occurs
 	year_counts = sorted_years.value_counts().sort_index()
 	print(year_counts.head(10))
 
-	# "If number of unique years is 'very large' display histogram for first 10 years"
-	# Since this dataset spans nearly a century, the number of unique years is 'very large'.
-	# As a matter of fact, there are 83 of them.
-	# So, I have to slice the first 10 unique years from our sorted data.
-	# Comment out the [:10] if you want to see *all* of them.
-	# Warning: the y-axis will be too crowded to discern.
-	all_unq_years = year_counts.index
-	first_10_unq_years = all_unq_years[:10]
+	# Since the dataset spans nearly a century, the number of unique years is indeed very large (83).
+	# By default args, it will display the first 10 unique years.
+	unique_years = year_counts.index[:years]
 
-	# Filter original sorted Series to include only data from first 10 unique years
-	filtered_years = sorted_years[sorted_years.isin(first_10_unq_years)]
+	# Filter original sorted Series to include only unique_years
+	filtered_years = sorted_years[sorted_years.isin(unique_years)]
+	return filtered_years
 
-	# Render histogram with MatPlotLib
-	plot.figure(figsize=(10, 5))
+def main():
+	if len(sys.argv) > 1:
+		year_range = int(sys.argv[1])
+		years = get_years(year_range)
+	else:
+		year_range = int(10)
+		years = get_years()
 
-	# Set bins to match exact number of unique years plus one to line up all the bars
-	bin_range = range(int(first_10_unq_years.min()), int(first_10_unq_years.max() + 2))
-	plot.hist(filtered_years, bins=bin_range, edgecolor='black', color='purple')
+	year_range = max(1, min(83, year_range))
+	bin_range = range(int(years.min()), int(years.max() + 2))
+	title = f"Number of Top Movies for {f'the First {year_range}' if year_range != 83 else ' All '} Unique Years"
 
-	plot.title("Number of Top Movies for the First 10 Unique Years")
+	plot.figure(figsize=(16, 8))
+	plot.hist(years, bins=bin_range, edgecolor='black', color='#4080FF')
+	plot.title(title)
+
 	plot.xlabel("Year")
+	plot.xticks(years, rotation='vertical')
 	plot.ylabel("Number of Movies")
-	plot.xticks(first_10_unq_years)	# Ensures only 10 target years are labelled
 	plot.grid(axis='y', linestyle='--', alpha=0.7)
 
 	plot.show()
 
 if __name__ == "__main__":
 	main()
-
-# TO DO 1: Import pandas and matplotlib modules.
-# TO DO 2: Draw histogram of the data from movies database.
-# TO DO 3: Perform the operations provided in readme.md file on this data.
-# TO DO 4: Run the script.
-
