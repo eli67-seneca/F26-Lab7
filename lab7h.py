@@ -6,7 +6,7 @@
 import pandas as pd
 import matplotlib.pyplot as plot
 
-movies = pd.read_csv('imdb_top_250.csv')
+movies = pd.read_csv("imdb_top_250.csv")
 
 def main():
 	# Copy Year column into a new series and sort it in asc order
@@ -17,9 +17,12 @@ def main():
 	year_counts = sorted_years.value_counts().sort_index()
 	print(year_counts.head(10))
 
-	# "If number of unique years is very large display histogram for first 10 years"
-	# Since this dataset spans nearly a century, the number of unique years is very large.
-	# So I have to slice the first 10 unique years from our sorted data.
+	# "If number of unique years is 'very large' display histogram for first 10 years"
+	# Since this dataset spans nearly a century, the number of unique years is 'very large'.
+	# As a matter of fact, there are 83 of them.
+	# So, I have to slice the first 10 unique years from our sorted data.
+	# Comment out the [:10] if you want to see *all* of them.
+	# Warning: the y-axis will be too crowded to discern.
 	all_unq_years = year_counts.index
 	first_10_unq_years = all_unq_years[:10]
 
